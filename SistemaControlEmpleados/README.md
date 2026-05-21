@@ -13,21 +13,21 @@ Prototipo web MVC en .NET 8, C# y SQL Server para administrar departamentos, emp
 
 ## Estructura
 
-- `SistemaControlEmpleadosFH.sln`: solución completa.
-- `SistemaControlEmpleadosFH/Database/schema_procedimientos.sql`: creación de base de datos, tablas y procedimientos almacenados.
-- `SistemaControlEmpleadosFH/Database/consultas.sql`: consultas solicitadas en la prueba técnica.
-- `SistemaControlEmpleadosFH/Docs/Analisis_Asistencia.pdf`: análisis técnico para la funcionalidad de asistencia.
+- `SistemaControlEmpleados.sln`: solución completa.
+- `SistemaControlEmpleados/Database/schema_procedimientos.sql`: creación de base de datos, tablas y procedimientos almacenados.
+- `SistemaControlEmpleados/Database/consultas.sql`: consultas solicitadas en la prueba técnica.
+- `SistemaControlEmpleados/Docs/Analisis_Asistencia.pdf`: análisis técnico para la funcionalidad de asistencia.
 
 ## Levantar localmente
 
 1. Crear la base de datos y objetos ejecutando en SQL Server Management Studio:
-   - `SistemaControlEmpleadosFH/Database/schema_procedimientos.sql`
+   - `SistemaControlEmpleados/Database/schema_procedimientos.sql`
 
 2. Abrir la solución:
-   - `SistemaControlEmpleadosFH.sln`
+   - `SistemaControlEmpleados.sln`
 
 3. Ajustar la cadena de conexión en:
-   - `SistemaControlEmpleadosFH/appsettings.json`
+   - `SistemaControlEmpleados/appsettings.json`
 
    Ejemplo con autenticación Windows:
 
@@ -39,7 +39,7 @@ Prototipo web MVC en .NET 8, C# y SQL Server para administrar departamentos, emp
 
    ```bash
    dotnet restore
-   dotnet run --project SistemaControlEmpleadosFH
+   dotnet run --project SistemaControlEmpleados
    ```
 
 5. Abrir la URL que indique la consola, normalmente:
@@ -47,15 +47,6 @@ Prototipo web MVC en .NET 8, C# y SQL Server para administrar departamentos, emp
    ```text
    https://localhost:5001
    ```
-
-## Flujo de prueba sugerido
-
-1. Crear un departamento.
-2. Crear un empleado asociado al departamento.
-3. Crear una asignación de presupuesto de Q100.00 al departamento.
-4. Crear un gasto de Q30.00 del empleado.
-5. Crear un gasto de Q20.00 del empleado.
-6. Revisar el reporte principal para ver ejecución y disponibilidad.
 
 ## Validaciones incluidas
 

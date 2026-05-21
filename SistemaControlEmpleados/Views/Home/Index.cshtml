@@ -1,0 +1,38 @@
+@model List<ReportePresupuesto>
+
+<div class="hero-card p-4 mb-4">
+    <span class="pill">Reporte principal</span>
+    <h1 class="page-title mt-3">Ejecución y disponibilidad de presupuesto</h1>
+    <p class="mb-0">Consulta visual basada en las consultas solicitadas para presupuesto asignado, utilizado, disponible y porcentaje de ejecución por departamento.</p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="stat"><div>Total asignado</div><h3>Q @Model.Sum(x => x.PresupuestoAsignado).ToString("N2")</h3></div></div>
+    <div class="col-md-4"><div class="stat"><div>Total utilizado</div><h3>Q @Model.Sum(x => x.PresupuestoUtilizado).ToString("N2")</h3></div></div>
+    <div class="col-md-4"><div class="stat"><div>Disponible</div><h3>Q @Model.Sum(x => x.Disponible).ToString("N2")</h3></div></div>
+</div>
+
+<div class="panel p-3 table-responsive">
+    <table class="table">
+        <thead>
+            <tr><th>Código</th><th>Departamento</th><th>Asignado</th><th>Utilizado</th><th>Disponible</th><th>% ejecución</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var x in Model)
+        {
+            var progreso = Math.Min(x.PorcentajeEjecucion, 100);
+            <tr>
+                <td>@x.Codigo</td>
+                <td>@x.Departamento</td>
+                <td>Q @x.PresupuestoAsignado.ToString("N2")</td>
+                <td>Q @x.PresupuestoUtilizado.ToString("N2")</td>
+                <td>Q @x.Disponible.ToString("N2")</td>
+                <td style="min-width:180px">
+                    <div class="d-flex justify-content-between"><span>@x.PorcentajeEjecucion.ToString("N2")%</span></div>
+                    <div class="progress"><div class="progress-bar" style="width:@progreso%"></div></div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

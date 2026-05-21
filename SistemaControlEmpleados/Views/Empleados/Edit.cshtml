@@ -1,0 +1,47 @@
+@model Empleado
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    var departamentos = ViewBag.Departamentos as IEnumerable<SelectListItem>;
+}
+
+<h1 class="page-title">@(Model.Id == 0 ? "Nuevo empleado" : "Editar empleado")</h1>
+
+<div class="panel p-4">
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        @if (Model.Id != 0)
+        {
+            <div class="mb-3">
+                <label asp-for="Codigo" class="form-label">Código</label>
+                <input asp-for="Codigo" class="form-control" readonly />
+            </div>
+        }
+
+        <div class="mb-3">
+            <label asp-for="Nombres" class="form-label">Nombres *</label>
+            <input asp-for="Nombres" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Apellidos" class="form-label">Apellidos *</label>
+            <input asp-for="Apellidos" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FechaNacimiento" class="form-label">Fecha nacimiento</label>
+            <input asp-for="FechaNacimiento" type="date" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DepartamentoId" class="form-label">Departamento *</label>
+            <select asp-for="DepartamentoId" asp-items="departamentos" class="form-select" required>
+                <option value="0">Seleccione...</option>
+            </select>
+        </div>
+
+        <button class="btn btn-pink">Guardar</button>
+        <a class="btn btn-light" asp-action="Index">Volver</a>
+    </form>
+</div>

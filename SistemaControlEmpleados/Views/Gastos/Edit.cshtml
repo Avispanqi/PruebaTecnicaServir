@@ -1,0 +1,39 @@
+@model Gasto
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    var empleados = ViewBag.Empleados as IEnumerable<SelectListItem>;
+}
+
+<h1 class="page-title">@(Model.Id == 0 ? "Nuevo gasto" : "Editar gasto")</h1>
+
+<div class="panel p-4">
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="EmpleadoId" class="form-label">Empleado *</label>
+            <select asp-for="EmpleadoId" asp-items="empleados" class="form-select" required>
+                <option value="0">Seleccione...</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Monto" class="form-label">Monto *</label>
+            <input asp-for="Monto" type="number" step="0.01" min="0.01" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FechaGasto" class="form-label">Fecha</label>
+            <input asp-for="FechaGasto" type="date" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Descripcion" class="form-label">Descripción *</label>
+            <textarea asp-for="Descripcion" required class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-pink">Guardar</button>
+        <a class="btn btn-light" asp-action="Index">Volver</a>
+    </form>
+</div>

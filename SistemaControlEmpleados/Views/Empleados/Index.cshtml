@@ -1,0 +1,30 @@
+@model List<Empleado>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title">Empleados</h1>
+    <a class="btn btn-pink" asp-action="Edit">Nuevo</a>
+</div>
+
+<div class="panel p-3 table-responsive">
+    <table class="table">
+        <thead>
+            <tr><th>Código</th><th>Nombres</th><th>Apellidos</th><th>Nacimiento</th><th>Departamento</th><th></th></tr>
+        </thead>
+        <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Codigo</td>
+                <td>@x.Nombres</td>
+                <td>@x.Apellidos</td>
+                <td>@(x.FechaNacimiento.HasValue ? x.FechaNacimiento.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@x.Departamento</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@x.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@x.Id" onclick="return confirm('¿Eliminar registro?')">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
